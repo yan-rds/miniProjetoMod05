@@ -7,12 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "reserva")
-public class Reserva {
+public class Assento {
     @Id
     private int numero;
     private boolean estaReservada;
 
-    public Reserva() {
+    public Assento() {
     }
 
     public int getNumero() {
