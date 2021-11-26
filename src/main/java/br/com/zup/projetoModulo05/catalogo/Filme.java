@@ -3,7 +3,11 @@ package br.com.zup.projetoModulo05.catalogo;
 import java.util.Date;
 import java.util.List;
 
-public class Filmes {
+/* Essa é a Model Filme, basicamente o JSON do filme que vem da API tem muita coisa. Com essa Model eu limito
+o que eu quero receber desse Json. As informações que eu quero receber são os atributos que a model tem
+(O nome ta em inglês porque precisa ser identico ao do Json que tá vindo da api externa)
+ */
+public class Filme {
     private int id;
     private String title;
     private List<Integer> genre_ids;
@@ -16,7 +20,7 @@ public class Filmes {
     private double voteAverage;
 
 
-    public Filmes() {
+    public Filme() {
     }
 
     public int getId() {
