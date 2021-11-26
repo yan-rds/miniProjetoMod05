@@ -3,19 +3,28 @@ package br.com.zup.projetoModulo05.catalogo;
 import java.util.Date;
 import java.util.List;
 
-public class Filme {
+public class Filmes {
+    private int id;
     private String title;
     private List<Integer> genre_ids;
     private String overview;
     private String poster_path;
-    private Date releaseDate;
+    private Date release_date;
     private boolean adult;
     private String media_type;
     private double popularity;
     private double voteAverage;
 
 
-    public Filme() {
+    public Filmes() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -50,12 +59,12 @@ public class Filme {
         this.poster_path = poster_path;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public Date getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 
     public boolean isAdult() {
