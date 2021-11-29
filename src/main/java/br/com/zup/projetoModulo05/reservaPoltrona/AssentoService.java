@@ -21,10 +21,19 @@ public class AssentoService {
         }
     }
 
-    public List<Assento> exibirTodosOsAssentos() {
 
+    public List<Assento> exibirTodosOsAssentos() {
         List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
         return assentos;
     }
-}
 
+    public Assento localizarAssento(int id) {
+        for (Assento assentoReferencia : assentoRepository.findAll()) {
+            if (assentoReferencia.getNumero() == id) {
+                return assentoReferencia;
+            }
+        }
+        throw new RuntimeException("O assento informado não foi localizado!");
+    }
+
+}
