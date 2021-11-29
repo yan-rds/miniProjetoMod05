@@ -30,6 +30,8 @@ public class AssentoService {
             if (assento.isEstaReservada() == false) {
                 assentosLivres.add(assento);
             }
+
+
         }
 
         return assentosLivres;
