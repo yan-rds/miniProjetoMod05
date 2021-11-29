@@ -15,27 +15,16 @@ public class AssentoService {
 
     /*Receber uma sala da controller, percorrer na lista de Sala todos os assentos e então cadastrar
     a sala recebida na repository */
-    public void cadastrarAssento(Sala sala){
-        for (Assento reservaReferencia: sala.getAssentos()) {
-           assentoRepository.save(reservaReferencia);
+    public void cadastrarAssento(Sala sala) {
+        for (Assento reservaReferencia : sala.getAssentos()) {
+            assentoRepository.save(reservaReferencia);
         }
     }
 
-    public List<Assento> exibirAssentosLivres () {
+    public List<Assento> exibirTodosOsAssentos() {
 
-        List<Assento> assentosLivres = new ArrayList<>();
-
-        for (Assento assento: assentoRepository.findAll()) {
-
-            if (assento.isEstaReservada() == false) {
-                assentosLivres.add(assento);
-            }
-
-
-        }
-
-        return assentosLivres;
-
+        List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
+        return assentos;
     }
-
 }
+
