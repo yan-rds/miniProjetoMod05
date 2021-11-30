@@ -30,9 +30,10 @@ public class AssentoController {
     }
 
     @GetMapping
-    public List<AssentoDTO> exibirAssentos(@RequestParam(required = false) Boolean assentoLivre, Boolean assentoPreferencial) {
+    public List<AssentoDTO> exibirAssentos(@RequestParam(required = false) Boolean assentoLivre, @RequestParam (required = false) Boolean assentoPreferencial) {
 
         List <AssentoDTO> assentosDTOS = new ArrayList<>();
+
         for (Assento assento: assentoService.exibirTodosOsAssentos(assentoLivre, assentoPreferencial)) {
             AssentoDTO assentoDTO = modelMapper.map(assento, AssentoDTO.class);
             assentosDTOS.add(assentoDTO);
