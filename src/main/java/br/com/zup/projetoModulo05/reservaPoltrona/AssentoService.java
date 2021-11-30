@@ -1,5 +1,6 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
 import br.com.zup.projetoModulo05.sala.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class AssentoService {
 
     public Assento atualizarStatusAssento(int id) {
         Assento assentoAtualizar = localizarAssento(id);
-        assentoAtualizar.setEstaReservada(true);
+        assentoAtualizar.setDisponibilidade(Disponibilidade.RESERVADO);
         assentoRepository.save(assentoAtualizar);
 
         return assentoAtualizar;
