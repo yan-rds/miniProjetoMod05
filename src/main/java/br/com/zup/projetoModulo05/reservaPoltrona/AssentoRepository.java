@@ -7,5 +7,6 @@ import java.util.List;
 public interface AssentoRepository extends CrudRepository<Assento, Integer> {
 
     List <Assento> findAllByAssentoLivre (Boolean assentoLivre);
+    List<Assento> findAllByAssentoPreferencial (Boolean assentoPreferencial);
 
 }
