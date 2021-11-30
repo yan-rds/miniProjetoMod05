@@ -1,2 +1,5 @@
-package br.com.zup.projetoModulo05.enums;public enum Disponibilidade {
+package br.com.zup.projetoModulo05.enums;
+
+public enum Disponibilidade {
+    VAZIO, RESERVADO
 }
