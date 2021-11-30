@@ -1,2 +1,5 @@
-package br.com.zup.projetoModulo05.enums;public class tipoAssento {
+package br.com.zup.projetoModulo05.enums;
+
+public enum TipoAssento {
+    PREFERENCIAL, LIVRE
 }
