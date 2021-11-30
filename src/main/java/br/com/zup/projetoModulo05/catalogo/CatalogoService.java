@@ -8,6 +8,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Optional;
+
 
 @Service
 public class CatalogoService {
@@ -18,13 +20,7 @@ public class CatalogoService {
 
     // Este método retorna o catalogo de filmes pro usuário
     // A forma que esse catálogo é preenchido eu explico abaixo
-    public Catalogo getCatalogo(){
-
-
-        // Essas são as varíaveis de filtro que o usuário selecionará
-        String query = "venom";
-        String regiao = "";
-        String anoDeLancamento = "2021";
+    public Catalogo getCatalogo(String query, String regiao, String anoDeLancamento){
 
         /* O UriComponentsBuilder constrói uma URI pra gente, e através dos métodos queryParam eu consigo dar
         chave e valor para os filtros do usuário, esses valores eu tô pegando das variáveis acima */
