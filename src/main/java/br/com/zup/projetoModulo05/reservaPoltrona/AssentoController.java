@@ -25,9 +25,9 @@ public class AssentoController {
     ModelMapper modelMapper;
 
     @PostMapping("/assentos")
-    public void cadastrarSala(@Valid @RequestBody CadastroSalaDTO cadastroSalaDTO){
-        Sala sala = modelMapper.map(cadastroSalaDTO, Sala.class);
-        assentoService.cadastrarAssento(sala);
+    public void cadastrarAssento(@Valid @RequestBody AssentoDTO assentoDTO){
+        Assento assento = modelMapper.map(assentoDTO, Assento.class);
+        assentoService.cadastrarAssento(assento);
     }
 
     @GetMapping

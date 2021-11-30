@@ -12,12 +12,9 @@ public class AssentoService {
     @Autowired
     AssentoRepository assentoRepository;
 
-    /*Receber uma sala da controller, percorrer na lista de Sala todos os assentos e então cadastrar
-    a sala recebida na repository */
-    public void cadastrarAssento(Sala sala) {
-        for (Assento reservaReferencia : sala.getAssentos()) {
-            assentoRepository.save(reservaReferencia);
-        }
+
+    public void cadastrarAssento(Assento assento) {
+            assentoRepository.save(assento);
     }
 
     public List<Assento> exibirTodosOsAssentos() {
