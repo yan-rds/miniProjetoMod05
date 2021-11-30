@@ -20,9 +20,14 @@ public class AssentoService {
         }
     }
 
-    public List<Assento> exibirTodosOsAssentos(Boolean assentoLivre) {
+    public List<Assento> exibirTodosOsAssentos(Boolean assentoLivre, Boolean assentoPreferencial) {
         if (assentoLivre != null) {
             return assentoRepository.findAllByAssentoLivre(assentoLivre);
+        }
+
+        if (assentoPreferencial !=null) {
+            return assentoRepository.findAllByAssentoPreferencial(assentoPreferencial);
+
         }
         List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
 
@@ -42,7 +47,7 @@ public class AssentoService {
 
     public Assento atualizarStatusAssento(int id) {
         Assento assentoAtualizar = localizarAssento(id);
-        assentoAtualizar.setEstaReservada(true);
+        assentoAtualizar.setAssentoLivre(true);
         assentoRepository.save(assentoAtualizar);
 
         return assentoAtualizar;
