@@ -25,12 +25,12 @@ public class Assento {
         this.numero = numero;
     }
 
-    public boolean isEstaReservada() {
-        return estaReservada;
+    public boolean isAssentoLivre() {
+        return assentoLivre;
     }
 
-    public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+    public void setAssentoLivre(boolean assentoLivre) {
+        this.assentoLivre = assentoLivre;
     }
 
     public boolean isAssentoPreferencial() {
