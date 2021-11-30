@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AssentoController {
     ModelMapper modelMapper;
 
     @PostMapping("/assentos")
-    public void cadastrarSala(@RequestBody CadastroSalaDTO cadastroSalaDTO){
+    public void cadastrarSala(@Valid @RequestBody CadastroSalaDTO cadastroSalaDTO){
         Sala sala = modelMapper.map(cadastroSalaDTO, Sala.class);
         assentoService.cadastrarAssento(sala);
     }
@@ -45,7 +46,7 @@ public class AssentoController {
     }
 
     @PutMapping("/{id}")
-    public ResumoDTO atualizarStatusAssento (@PathVariable int id, @RequestBody StatusAssentoDTO status) {
+    public ResumoDTO atualizarStatusAssento (@PathVariable int id, @Valid @RequestBody StatusAssentoDTO status) {
         ResumoDTO resumoDTO;
         if (status.isEstaReservada()) {
             resumoDTO = modelMapper.map(assentoService.atualizarStatusAssento(id), ResumoDTO.class);

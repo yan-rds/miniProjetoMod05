@@ -3,6 +3,7 @@ package br.com.zup.projetoModulo05.reservaPoltrona;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,8 +11,11 @@ import java.util.List;
 public class Assento {
     @Id
     private int numero;
+    @NotNull
     private boolean estaReservada;
+    @NotNull
     private boolean assentoPreferencial;
+    @NotNull
     private double valor;
 
     public Assento() {

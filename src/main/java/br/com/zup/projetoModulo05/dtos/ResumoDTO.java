@@ -1,8 +1,12 @@
 package br.com.zup.projetoModulo05.dtos;
 
+import javax.validation.constraints.NotNull;
+
 public class ResumoDTO {
 
+    @NotNull
     private int numero;
+    @NotNull
     private boolean estaReservada;
 
     public ResumoDTO() {

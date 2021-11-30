@@ -2,15 +2,33 @@ package br.com.zup.projetoModulo05.sala;
 
 import br.com.zup.projetoModulo05.reservaPoltrona.Assento;
 
+import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.List;
 
+    @Entity
+    @Table(name = "salas")
 public class Sala {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Valid
+    @OneToMany
     private List<Assento> assentos;
 
     public Sala() {
     }
 
-    public List<Assento> getAssentos() {
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public List<Assento> getAssentos() {
         return assentos;
     }
 

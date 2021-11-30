@@ -1,6 +1,10 @@
 package br.com.zup.projetoModulo05.dtos;
 
+import javax.validation.constraints.NotNull;
+
 public class StatusAssentoDTO {
+
+    @NotNull
     private boolean estaReservada;
 
     public StatusAssentoDTO() {
