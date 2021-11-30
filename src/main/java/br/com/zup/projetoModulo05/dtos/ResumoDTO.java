@@ -1,5 +1,7 @@
 package br.com.zup.projetoModulo05.dtos;
 
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
+
 import javax.validation.constraints.NotNull;
 
 public class ResumoDTO {
@@ -7,7 +9,7 @@ public class ResumoDTO {
     @NotNull
     private int numero;
     @NotNull
-    private boolean estaReservada;
+    private Disponibilidade disponibilidade;
 
     public ResumoDTO() {
     }
@@ -20,11 +22,11 @@ public class ResumoDTO {
         this.numero = numero;
     }
 
-    public boolean isEstaReservada() {
-        return estaReservada;
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 }
