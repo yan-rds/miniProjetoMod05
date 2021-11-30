@@ -21,10 +21,16 @@ public class AssentoService {
             assentoRepository.save(assento);
     }
 
-    public List<Assento> exibirTodosOsAssentos() {
+    public List<Assento> exibirTodosOsAssentos(Boolean assentoLivre) {
+        if (assentoLivre != null) {
+            return assentoRepository.findAllByAssentoLivre(assentoLivre);
+        }
         List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
+
         return assentos;
     }
+
+
 
     public Assento localizarAssento(int id) {
         Optional<Assento> assentolocalizado = assentoRepository.findById(id);
