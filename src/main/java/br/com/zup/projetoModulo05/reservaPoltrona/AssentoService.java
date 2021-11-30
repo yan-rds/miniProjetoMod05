@@ -31,7 +31,7 @@ public class AssentoService {
             return assentoRepository.findAllByTipoAssento(tipoAssento);
         }
 
-        List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
+           List<Assento> assentos = (List<Assento>) assentoRepository.findAll();
 
         return assentos;
     }
@@ -48,9 +48,12 @@ public class AssentoService {
 
     public Assento atualizarStatusAssento(int id) {
         Assento assentoAtualizar = localizarAssento(id);
+
         if (assentoAtualizar.getDisponibilidade().equals(Disponibilidade.RESERVADO)) {
             throw new AssentoJaReservado("Este assento já está reservado");
         }
+        assentoAtualizar.setDisponibilidade(Disponibilidade.RESERVADO);
+
         assentoAtualizar.setDisponibilidade(Disponibilidade.RESERVADO);
         assentoRepository.save(assentoAtualizar);
 
