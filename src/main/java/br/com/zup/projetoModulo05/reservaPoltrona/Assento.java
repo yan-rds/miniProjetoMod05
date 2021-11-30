@@ -53,4 +53,5 @@ public class Assento {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
 }

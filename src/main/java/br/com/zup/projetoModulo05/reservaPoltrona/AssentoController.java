@@ -1,22 +1,18 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
 import br.com.zup.projetoModulo05.config.exceptions.AlteracaoDisponibilidadeInvalida;
-import br.com.zup.projetoModulo05.config.exceptions.AssentoJaReservado;
 import br.com.zup.projetoModulo05.dtos.AssentoDTO;
-import br.com.zup.projetoModulo05.dtos.CadastroSalaDTO;
 import br.com.zup.projetoModulo05.dtos.ResumoDTO;
 import br.com.zup.projetoModulo05.dtos.StatusAssentoDTO;
 import br.com.zup.projetoModulo05.enums.Disponibilidade;
-import br.com.zup.projetoModulo05.sala.Sala;
-import org.apache.tomcat.jni.Status;
+import br.com.zup.projetoModulo05.enums.TipoAssento;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/cinema")
@@ -35,10 +31,10 @@ public class AssentoController {
     }
 
     @GetMapping
-    public List<AssentoDTO> exibirAssentos(@RequestParam(required = false) Boolean assentoLivre) {
+    public List<AssentoDTO> exibirAssentos(@RequestParam(required = false) Disponibilidade disponibilidade, @RequestParam (required = false) TipoAssento tipoAssento) {
 
         List <AssentoDTO> assentosDTOS = new ArrayList<>();
-        for (Assento assento: assentoService.exibirTodosOsAssentos(assentoLivre)) {
+        for (Assento assento: assentoService.exibirTodosOsAssentos(disponibilidade,tipoAssento)) {
             AssentoDTO assentoDTO = modelMapper.map(assento, AssentoDTO.class);
             assentosDTOS.add(assentoDTO);
         }
