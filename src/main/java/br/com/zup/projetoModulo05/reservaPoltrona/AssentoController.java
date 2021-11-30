@@ -28,11 +28,11 @@ public class AssentoController {
     }
 
     @GetMapping
-    public List<AssentoDTO> buscarAssentos() {
+    public List<AssentoDTO> exibirAssentos() {
 
         List <AssentoDTO> assentosDTOS = new ArrayList<>();
 
-        for (Assento assento: assentoService.exibirAssentosLivres()) {
+        for (Assento assento: assentoService.exibirTodosOsAssentos()) {
 
             AssentoDTO assentoDTO = modelMapper.map(assento, AssentoDTO.class);
 
