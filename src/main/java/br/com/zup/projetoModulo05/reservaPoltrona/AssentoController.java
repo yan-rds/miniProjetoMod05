@@ -1,13 +1,14 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
 import br.com.zup.projetoModulo05.dtos.AssentoDTO;
+import br.com.zup.projetoModulo05.dtos.CadastroSalaDTO;
+import br.com.zup.projetoModulo05.dtos.ResumoDTO;
+import br.com.zup.projetoModulo05.dtos.StatusAssentoDTO;
 import br.com.zup.projetoModulo05.sala.Sala;
+import org.apache.tomcat.jni.Status;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,9 @@ public class AssentoController {
     ModelMapper modelMapper;
 
     @PostMapping("/assentos")
-    public void cadastrarSala(Sala novaSala){
-        assentoService.cadastrarAssento(novaSala);
+    public void cadastrarSala(@RequestBody CadastroSalaDTO cadastroSalaDTO){
+        Sala sala = modelMapper.map(cadastroSalaDTO, Sala.class);
+        assentoService.cadastrarAssento(sala);
     }
 
     @GetMapping
@@ -42,4 +44,14 @@ public class AssentoController {
         return assentosDTOS;
     }
 
+    @PutMapping("/{id}")
+    public ResumoDTO atualizarStatusAssento (@PathVariable int id, @RequestBody StatusAssentoDTO status) {
+        ResumoDTO resumoDTO;
+        if (status.isEstaReservada()) {
+            resumoDTO = modelMapper.map(assentoService.atualizarStatusAssento(id), ResumoDTO.class);
+            return resumoDTO;
+        } else {
+            return resumoDTO = modelMapper.map(assentoService.localizarAssento(id), ResumoDTO.class);
+        }
+    }
 }
