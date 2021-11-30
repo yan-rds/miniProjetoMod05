@@ -35,17 +35,13 @@ public class AssentoController {
     }
 
     @GetMapping
-    public List<AssentoDTO> exibirAssentos() {
+    public List<AssentoDTO> exibirAssentos(@RequestParam(required = false) Boolean assentoLivre) {
 
         List <AssentoDTO> assentosDTOS = new ArrayList<>();
-
-        for (Assento assento: assentoService.exibirTodosOsAssentos()) {
-
+        for (Assento assento: assentoService.exibirTodosOsAssentos(assentoLivre)) {
             AssentoDTO assentoDTO = modelMapper.map(assento, AssentoDTO.class);
-
             assentosDTOS.add(assentoDTO);
         }
-
         return assentosDTOS;
     }
 
