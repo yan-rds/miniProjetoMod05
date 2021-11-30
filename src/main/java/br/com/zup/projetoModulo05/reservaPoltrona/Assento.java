@@ -10,7 +10,7 @@ import java.util.List;
 public class Assento {
     @Id
     private int numero;
-    private boolean estaReservada;
+    private boolean assentoLivre;
     private boolean assentoPreferencial;
     private double valor;
 
