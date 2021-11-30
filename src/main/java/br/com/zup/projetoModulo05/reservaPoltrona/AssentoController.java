@@ -54,4 +54,5 @@ public class AssentoController {
             return resumoDTO = modelMapper.map(assentoService.localizarAssento(id), ResumoDTO.class);
         }
     }
+
 }
