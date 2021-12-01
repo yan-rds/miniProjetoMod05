@@ -1,26 +1,43 @@
 package br.com.zup.projetoModulo05.dtos;
 
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
+import br.com.zup.projetoModulo05.enums.TipoAssento;
+
+import javax.validation.constraints.NotNull;
+
 public class AssentoDTO {
 
-    private int numero;
-    private boolean estaReservada;
+    @NotNull
+    private Disponibilidade disponibilidade;
+    @NotNull
+    private TipoAssento tipoAssento;
+    @NotNull
+    private double valor;
 
     public AssentoDTO() {
     }
 
-    public int getNumero() {
-        return numero;
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
-    public boolean isEstaReservada() {
-        return estaReservada;
+    public TipoAssento getTipoAssento() {
+        return tipoAssento;
     }
 
-    public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+    public void setTipoAssento(TipoAssento tipoAssento) {
+        this.tipoAssento = tipoAssento;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 }

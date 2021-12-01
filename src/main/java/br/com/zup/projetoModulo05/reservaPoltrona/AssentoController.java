@@ -1,17 +1,22 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
+import br.com.zup.projetoModulo05.config.exceptions.AlteracaoDisponibilidadeInvalida;
+import br.com.zup.projetoModulo05.config.exceptions.AssentoJaReservado;
 import br.com.zup.projetoModulo05.dtos.AssentoDTO;
 import br.com.zup.projetoModulo05.dtos.CadastroSalaDTO;
 import br.com.zup.projetoModulo05.dtos.ResumoDTO;
 import br.com.zup.projetoModulo05.dtos.StatusAssentoDTO;
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
 import br.com.zup.projetoModulo05.sala.Sala;
 import org.apache.tomcat.jni.Status;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cinema")
@@ -24,9 +29,9 @@ public class AssentoController {
     ModelMapper modelMapper;
 
     @PostMapping("/assentos")
-    public void cadastrarSala(@RequestBody CadastroSalaDTO cadastroSalaDTO){
-        Sala sala = modelMapper.map(cadastroSalaDTO, Sala.class);
-        assentoService.cadastrarAssento(sala);
+    public void cadastrarAssento(@Valid @RequestBody AssentoDTO assentoDTO){
+        Assento assento = modelMapper.map(assentoDTO, Assento.class);
+        assentoService.cadastrarAssento(assento);
     }
 
     @GetMapping
@@ -45,13 +50,13 @@ public class AssentoController {
     }
 
     @PutMapping("/{id}")
-    public ResumoDTO atualizarStatusAssento (@PathVariable int id, @RequestBody StatusAssentoDTO status) {
+    public ResumoDTO atualizarStatusAssento (@PathVariable int id, @Valid @RequestBody StatusAssentoDTO status) {
         ResumoDTO resumoDTO;
-        if (status.isEstaReservada()) {
+        if (status.getDisponibilidade().equals(Disponibilidade.RESERVADO)) {
             resumoDTO = modelMapper.map(assentoService.atualizarStatusAssento(id), ResumoDTO.class);
             return resumoDTO;
         } else {
-            return resumoDTO = modelMapper.map(assentoService.localizarAssento(id), ResumoDTO.class);
+            throw new AlteracaoDisponibilidadeInvalida("Não é possível alterar um assento para VAZIO");
         }
     }
 

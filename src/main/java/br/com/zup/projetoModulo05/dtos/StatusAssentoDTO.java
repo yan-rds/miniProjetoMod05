@@ -1,17 +1,24 @@
 package br.com.zup.projetoModulo05.dtos;
 
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
+
+import javax.validation.constraints.NotNull;
+
 public class StatusAssentoDTO {
-    private boolean estaReservada;
+
+    @NotNull
+    private Disponibilidade disponibilidade;
 
     public StatusAssentoDTO() {
     }
 
-    public boolean isEstaReservada() {
-        return estaReservada;
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
+
 
 }

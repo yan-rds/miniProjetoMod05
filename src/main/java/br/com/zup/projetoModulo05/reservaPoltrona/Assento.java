@@ -1,17 +1,23 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import br.com.zup.projetoModulo05.enums.Disponibilidade;
+import br.com.zup.projetoModulo05.enums.TipoAssento;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "reserva")
+@Table(name = "assentos")
 public class Assento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
-    private boolean estaReservada;
-    private boolean assentoPreferencial;
+    @NotNull
+    private Disponibilidade disponibilidade;
+    @NotNull
+    private TipoAssento tipoAssento;
+    @NotNull
     private double valor;
 
     public Assento() {
@@ -25,20 +31,20 @@ public class Assento {
         this.numero = numero;
     }
 
-    public boolean isEstaReservada() {
-        return estaReservada;
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
-    public boolean isAssentoPreferencial() {
-        return assentoPreferencial;
+    public TipoAssento getTipoAssento() {
+        return tipoAssento;
     }
 
-    public void setAssentoPreferencial(boolean assentoPreferencial) {
-        this.assentoPreferencial = assentoPreferencial;
+    public void setTipoAssento(TipoAssento tipoAssento) {
+        this.tipoAssento = tipoAssento;
     }
 
     public double getValor() {
