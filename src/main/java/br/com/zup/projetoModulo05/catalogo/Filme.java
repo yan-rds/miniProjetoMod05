@@ -1,5 +1,7 @@
 package br.com.zup.projetoModulo05.catalogo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,12 +14,9 @@ public class Filme {
     private String title;
     private List<Integer> genre_ids;
     private String overview;
-    private String poster_path;
     private Date release_date;
     private boolean adult;
-    private String media_type;
     private double popularity;
-    private double voteAverage;
 
 
     public Filme() {
@@ -55,14 +54,6 @@ public class Filme {
         this.overview = overview;
     }
 
-    public String getPoster_path() {
-        return poster_path;
-    }
-
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
-    }
-
     public Date getRelease_date() {
         return release_date;
     }
@@ -79,13 +70,6 @@ public class Filme {
         this.adult = adult;
     }
 
-    public String getMedia_type() {
-        return media_type;
-    }
-
-    public void setMedia_type(String media_type) {
-        this.media_type = media_type;
-    }
 
     public double getPopularity() {
         return popularity;
@@ -93,13 +77,5 @@ public class Filme {
 
     public void setPopularity(double popularity) {
         this.popularity = popularity;
-    }
-
-    public double getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(double voteAverage) {
-        this.voteAverage = voteAverage;
     }
 }
