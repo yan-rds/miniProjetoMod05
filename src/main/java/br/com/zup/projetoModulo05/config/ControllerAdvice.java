@@ -1,5 +1,6 @@
 package br.com.zup.projetoModulo05.config;
 
+import br.com.zup.projetoModulo05.config.exceptions.AlteracaoDisponibilidadeInvalida;
 import br.com.zup.projetoModulo05.config.exceptions.AssentoJaReservado;
 import br.com.zup.projetoModulo05.config.exceptions.AssentoNaoLocalizado;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -48,6 +49,12 @@ public class ControllerAdvice {
     @ExceptionHandler(AssentoNaoLocalizado.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public MensagemDeErro assentoNaoLocalizadoException(AssentoNaoLocalizado exception){
+        return new MensagemDeErro(exception.getMessage());
+    }
+
+    @ExceptionHandler(AlteracaoDisponibilidadeInvalida.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public MensagemDeErro alteracaoDisponibilidadeInvalidaException(AlteracaoDisponibilidadeInvalida exception){
         return new MensagemDeErro(exception.getMessage());
     }
 }
