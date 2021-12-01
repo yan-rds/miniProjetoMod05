@@ -5,7 +5,6 @@ import br.com.zup.projetoModulo05.enums.TipoAssento;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "assentos")
@@ -54,4 +53,5 @@ public class Assento {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
 }
