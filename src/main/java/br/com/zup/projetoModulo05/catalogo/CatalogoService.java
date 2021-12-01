@@ -41,32 +41,31 @@ public class CatalogoService {
         return template.getForObject(uri.toUriString(), Catalogo.class);
     }
 
-    public Catalogo descobrirFilme (){
-        /*https://api.themoviedb.org/3/discover/movie?
-        api_key=988decebbe8940b276f0df16a49d8905
-        &language=pt-BR
-        &sort_by=popularity.desc
-        &include_adult=false
-        &include_video=false
-        &page=1
-        &primary_release_year=2021
-        &with_cast=angelina
-        &with_genres=35
-        &with_keywords=venom
-        &with_watch_monetization_types=flatrate
-         */
+
+    //Este método, a partir de filtros que o usuário envia como parâmetro, faz a requisição da api externa
+    //substituindo o valor das querys, pelas variaveis de filtro;
+    public Catalogo descobrirFilme (String language,
+                                    String sort_by,
+                                    String include_adult,
+                                    String primary_release_year,
+                                    String with_genres){
 
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host("api.themoviedb.org")
                 .path("3/discover/movie")
                 .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
-                .queryParam("language", "pt-BR")
-                .queryParam("sort_by", "popularity.desc")
-                .queryParam("include_adult", "false")
-                .queryParam("include_video", "false")
+                .queryParam("language", language)
+                .queryParam("sort_by", sort_by)
+                .queryParam("include_adult", include_adult)
+                .queryParam("page", "1")
+                .queryParam("primary_release_year", primary_release_year)
+                .queryParam("with_genres", with_genres)
+                .queryParam("with_watch_monetization_types", "flatrate")
                 .build();
 
         return template.getForObject(uri.toUriString(), Catalogo.class);
     }
+
+
 }
