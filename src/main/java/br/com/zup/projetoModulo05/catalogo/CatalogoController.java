@@ -1,5 +1,7 @@
 package br.com.zup.projetoModulo05.catalogo;
 
+import br.com.zup.projetoModulo05.catalogo.configs.dtos.CatalogoEspelhoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +14,20 @@ public class CatalogoController {
     @Autowired
     CatalogoService service;
 
+    @Autowired
+    ModelMapper conversor;
+
     @GetMapping("/{query}/{regiao}/{anoDeLancamento}")
-    public Catalogo getFilmeEspecifico(@PathVariable String query,
+    public CatalogoEspelhoDTO getFilmeEspecifico(@PathVariable String query,
                                        @PathVariable String regiao,
                                        @PathVariable String anoDeLancamento){
-        return service.getFilmeEspecifico(query, regiao, anoDeLancamento);
+        Catalogo catalogo = service.getFilmeEspecifico(query, regiao, anoDeLancamento);
+        CatalogoEspelhoDTO catalogoEspelhoDTO = conversor.map(catalogo, CatalogoEspelhoDTO.class);
+        return catalogoEspelhoDTO;
     }
 
     @GetMapping()
-    public Catalogo getDescobrirFilme(@RequestParam Optional<String> idioma,
+    public CatalogoEspelhoDTO getDescobrirFilme(@RequestParam Optional<String> idioma,
                                       @RequestParam Optional<String> ordenar_por,
                                       @RequestParam Optional<String> incluir_adulto,
                                       @RequestParam Optional<String> ano_de_lancamento,
@@ -30,7 +37,6 @@ public class CatalogoController {
         String filtroAdulto;
         String filtroAno;
         String filtroGenero;
-
 
         if (idioma.isEmpty()){
             filtroLingua = "pt-BR";
@@ -61,7 +67,10 @@ public class CatalogoController {
        else {
            filtroGenero = genero.get();
        }
-        return service.descobrirFilme(filtroLingua, filtroOrdenar, filtroAdulto, filtroAno, filtroGenero);
+        Catalogo catalogo = service.descobrirFilme(filtroLingua,
+                filtroOrdenar, filtroAdulto, filtroAno, filtroGenero);
+
+        return conversor.map(catalogo, CatalogoEspelhoDTO.class);
     }
 
 
