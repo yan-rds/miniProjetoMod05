@@ -15,7 +15,7 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Valid
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Assento> assentos;
     private String nomeFilme;
 
@@ -38,11 +38,11 @@ public class Sala {
         this.assentos = assentos;
     }
 
-    public Filme getFilme() {
-        return filme;
+    public String getNomeFilme() {
+        return nomeFilme;
     }
 
-    public void setFilme(Filme filme) {
-        this.filme = filme;
+    public void setNomeFilme(String nomeFilme) {
+        this.nomeFilme = nomeFilme;
     }
 }
