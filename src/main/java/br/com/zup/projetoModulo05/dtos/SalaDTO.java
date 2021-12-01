@@ -6,19 +6,10 @@ import java.util.List;
 
 public class SalaDTO {
 
-    private int id;
     private List<Assento> assentos;
     private String nomeFilme;
 
     public SalaDTO() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Assento> getAssentos() {
