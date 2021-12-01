@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "reserva")
+@Table(name = "assentos")
 public class Assento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
