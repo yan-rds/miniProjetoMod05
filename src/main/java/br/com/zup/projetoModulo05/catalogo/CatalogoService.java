@@ -67,5 +67,19 @@ public class CatalogoService {
         return template.getForObject(uri.toUriString(), Catalogo.class);
     }
 
+    public Catalogo emCartaz(){
+        //https://api.themoviedb.org/3/movie/now_playing?api_key=988decebbe8940b276f0df16a49d8905&language=pt-BR&page=1&region=br
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("api.themoviedb.org")
+                .path("3/discover/movie/now_playing")
+                .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
+                .queryParam("language", "pt-br")
+                .queryParam("page", "1")
+                .queryParam("region", "BR")
+                .build();
 
+        return template.getForObject(uri.toUriString(), Catalogo.class);
+
+    }
 }
