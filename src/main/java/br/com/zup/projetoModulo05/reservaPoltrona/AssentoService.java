@@ -1,5 +1,6 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
+import br.com.zup.projetoModulo05.config.exceptions.AssentoNaoLocalizado;
 import br.com.zup.projetoModulo05.enums.Disponibilidade;
 import br.com.zup.projetoModulo05.sala.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class AssentoService {
                 return assentoReferencia;
             }
         }
-        throw new RuntimeException("O assento informado não foi localizado!");
+        throw new AssentoNaoLocalizado("O assento informado não foi localizado!");
     }
 
     public Assento atualizarStatusAssento(int id) {

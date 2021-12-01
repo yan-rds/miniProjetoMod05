@@ -1,5 +1,6 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
+import br.com.zup.projetoModulo05.config.exceptions.AssentoJaReservado;
 import br.com.zup.projetoModulo05.dtos.AssentoDTO;
 import br.com.zup.projetoModulo05.dtos.CadastroSalaDTO;
 import br.com.zup.projetoModulo05.dtos.ResumoDTO;
@@ -54,7 +55,7 @@ public class AssentoController {
             resumoDTO = modelMapper.map(assentoService.atualizarStatusAssento(id), ResumoDTO.class);
             return resumoDTO;
         } else {
-            throw new RuntimeException("Assento já está reservado");
+            throw new AssentoJaReservado("Este assento já foi reservado");
         }
     }
 
