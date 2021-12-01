@@ -1,5 +1,6 @@
 package br.com.zup.projetoModulo05.reservaPoltrona;
 
+import br.com.zup.projetoModulo05.config.exceptions.AlteracaoDisponibilidadeInvalida;
 import br.com.zup.projetoModulo05.config.exceptions.AssentoJaReservado;
 import br.com.zup.projetoModulo05.dtos.AssentoDTO;
 import br.com.zup.projetoModulo05.dtos.CadastroSalaDTO;
@@ -51,11 +52,11 @@ public class AssentoController {
     @PutMapping("/{id}")
     public ResumoDTO atualizarStatusAssento (@PathVariable int id, @Valid @RequestBody StatusAssentoDTO status) {
         ResumoDTO resumoDTO;
-        if (status.getDisponibilidade().equals(Disponibilidade.VAZIO)) {
+        if (status.getDisponibilidade().equals(Disponibilidade.RESERVADO)) {
             resumoDTO = modelMapper.map(assentoService.atualizarStatusAssento(id), ResumoDTO.class);
             return resumoDTO;
         } else {
-            throw new AssentoJaReservado("Este assento já foi reservado");
+            throw new AlteracaoDisponibilidadeInvalida("Não é possível alterar um assento para VAZIO");
         }
     }
 
