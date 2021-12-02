@@ -13,8 +13,10 @@ public class Assento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Disponibilidade disponibilidade;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private TipoAssento tipoAssento;
     @NotNull
     private double valor;
