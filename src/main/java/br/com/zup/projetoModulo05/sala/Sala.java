@@ -18,6 +18,10 @@ public class Sala {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Assento> assentos;
     private String nomeFilme;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List <Horario> horarios;
+    private int numeroAssentos;
+
 
     public Sala() {
     }
@@ -45,4 +49,21 @@ public class Sala {
     public void setNomeFilme(String nomeFilme) {
         this.nomeFilme = nomeFilme;
     }
+
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
+
+    public int getNumeroAssentos() {
+        return numeroAssentos;
+    }
+
+    public void setNumeroAssentos(int numeroAssentos) {
+        this.numeroAssentos = numeroAssentos;
+    }
+
 }
