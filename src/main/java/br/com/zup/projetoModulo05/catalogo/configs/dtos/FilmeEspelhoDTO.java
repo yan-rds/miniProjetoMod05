@@ -1,25 +1,19 @@
-package br.com.zup.projetoModulo05.catalogo;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package br.com.zup.projetoModulo05.catalogo.configs.dtos;
 
 import java.util.Date;
 import java.util.List;
 
-/* Essa é a Model Filme, basicamente o JSON do filme que vem da API tem muita coisa. Com essa Model eu limito
-o que eu quero receber desse Json. As informações que eu quero receber são os atributos que a model tem
-(O nome ta em inglês porque precisa ser identico ao do Json que tá vindo da api externa)
- */
-public class Filme {
+public class FilmeEspelhoDTO {
     private int id;
     private String title;
     private List<Integer> genre_ids;
     private String overview;
     private Date release_date;
     private boolean adult;
+    private String media_type;
     private double popularity;
 
-
-    public Filme() {
+    public FilmeEspelhoDTO() {
     }
 
     public int getId() {
@@ -70,6 +64,13 @@ public class Filme {
         this.adult = adult;
     }
 
+    public String getMedia_type() {
+        return media_type;
+    }
+
+    public void setMedia_type(String media_type) {
+        this.media_type = media_type;
+    }
 
     public double getPopularity() {
         return popularity;

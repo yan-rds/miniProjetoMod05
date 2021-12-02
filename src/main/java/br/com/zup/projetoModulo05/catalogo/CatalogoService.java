@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.Optional;
 
 
 @Service
@@ -16,19 +20,68 @@ public class CatalogoService {
 
     // Este método retorna o catalogo de filmes pro usuário
     // A forma que esse catálogo é preenchido eu explico abaixo
-    public Catalogo getCatalogo(){
+    public Catalogo getFilmeEspecifico(String query, String regiao, String anoDeLancamento){
 
-        /* Essa é a URI (link) da API (como se fosse o que a gente coloca no postman), se você copiar ela e colar
-        no postman ou no seu navegador, voce vai tá fazendo uma requisição pra API externa, a themoviedb
-         */
-        String uri = "https://api.themoviedb.org/3/trending/movie/week?api_key=988decebbe8940b276f0df16a49d8905";
+        /* O UriComponentsBuilder constrói uma URI pra gente, e através dos métodos queryParam eu consigo dar
+        chave e valor para os filtros do usuário, esses valores eu tô pegando das variáveis acima */
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("api.themoviedb.org")
+                .path("3/search/movie")
+                .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
+                .queryParam("language", "pt-br")
+                .queryParam("query", query)
+                .queryParam("page", "1")
+                .queryParam("include_adult", "true")
+                .queryParam("region", regiao)
+                .queryParam("primary_release_year", anoDeLancamento)
+                .build();
 
-        /* Agora eu utilizo o template (que a gente criou lá em cima), ele tem um método que é o
-        getForObject, que funciona bem parecido com o modelMapper que a gente usa.
-        Basicamente ele entra na URI (que eu salvei na variavel ai em cima), e transforma o JSON
-        da API na classe que eu quiser, aí eu escolhi na Catalogo
-        Depois disso, eu retorno ela.
-         */
-        return template.getForObject(uri, Catalogo.class);
+
+        return template.getForObject(uri.toUriString(), Catalogo.class);
+    }
+
+
+    //Este método, a partir de filtros que o usuário envia como parâmetro, faz a requisição da api externa
+    //substituindo o valor das querys, pelas variaveis de filtro;
+    public Catalogo descobrirFilme (String language,
+                                    String sort_by,
+                                    String include_adult,
+                                    String primary_release_year,
+                                    String with_genres){
+
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("api.themoviedb.org")
+                .path("3/discover/movie")
+                .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
+                .queryParam("language", language)
+                .queryParam("sort_by", sort_by)
+                .queryParam("include_adult", include_adult)
+                .queryParam("page", "1")
+                .queryParam("primary_release_year", primary_release_year)
+                .queryParam("with_genres", with_genres)
+                .queryParam("with_watch_monetization_types", "flatrate")
+                .build();
+
+        return template.getForObject(uri.toUriString(), Catalogo.class);
+    }
+
+
+    // Este método acessa a página da API que exibe os filmes em cartaz
+    public Catalogo emCartaz(){
+
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("api.themoviedb.org")
+                .path("3/discover/movie/now_playing")
+                .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
+                .queryParam("language", "pt-br")
+                .queryParam("page", "1")
+                .queryParam("region", "BR")
+                .build();
+
+        return template.getForObject(uri.toUriString(), Catalogo.class);
+
     }
 }
