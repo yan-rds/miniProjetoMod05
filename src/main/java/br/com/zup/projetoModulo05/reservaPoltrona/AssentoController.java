@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/cinema")
+@RequestMapping("/assentos")
 public class AssentoController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AssentoController {
     @Autowired
     ModelMapper modelMapper;
 
-    @PostMapping("/assentos")
+    @PostMapping
     public void cadastrarAssento(@Valid @RequestBody AssentoDTO assentoDTO){
         Assento assento = modelMapper.map(assentoDTO, Assento.class);
         assentoService.cadastrarAssento(assento);
