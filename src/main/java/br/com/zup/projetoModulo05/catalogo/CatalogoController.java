@@ -1,6 +1,7 @@
 package br.com.zup.projetoModulo05.catalogo;
 
-import br.com.zup.projetoModulo05.catalogo.configs.dtos.CatalogoEspelhoDTO;
+import br.com.zup.projetoModulo05.catalogo.dtos.CatalogoCartazDTO;
+import br.com.zup.projetoModulo05.catalogo.dtos.CatalogoEspelhoDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,12 @@ public class CatalogoController {
                 filtroOrdenar, filtroAdulto, filtroAno, filtroGenero);
 
         return conversor.map(catalogo, CatalogoEspelhoDTO.class);
+    }
+
+    @GetMapping("/cartaz")
+    public CatalogoCartazDTO emCartaz(){
+        Catalogo catalogo = service.emCartaz();
+        return conversor.map(catalogo, CatalogoCartazDTO.class);
     }
 
 
