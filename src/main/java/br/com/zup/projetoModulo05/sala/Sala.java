@@ -4,6 +4,8 @@ import br.com.zup.projetoModulo05.reservaPoltrona.Assento;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.util.List;
 
@@ -16,7 +18,9 @@ public class Sala {
     private int id;
     @Valid
     @OneToMany(cascade = CascadeType.ALL)
+    @NotNull
     private List<Assento> assentos;
+    @NotBlank
     private String nomeFilme;
     private Time primeiroHorario;
     private Time segundoHorario;
