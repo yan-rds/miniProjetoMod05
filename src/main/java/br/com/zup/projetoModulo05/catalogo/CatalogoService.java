@@ -20,7 +20,7 @@ public class CatalogoService {
 
     // Este método retorna o catalogo de filmes pro usuário
     // A forma que esse catálogo é preenchido eu explico abaixo
-    public Catalogo getFilmeEspecifico(String query, String regiao, String anoDeLancamento){
+    public Catalogo getFilmeEspecifico(String query, String regiao, String anoDeLancamento) {
 
         /* O UriComponentsBuilder constrói uma URI pra gente, e através dos métodos queryParam eu consigo dar
         chave e valor para os filtros do usuário, esses valores eu tô pegando das variáveis acima */
@@ -44,11 +44,11 @@ public class CatalogoService {
 
     //Este método, a partir de filtros que o usuário envia como parâmetro, faz a requisição da api externa
     //substituindo o valor das querys, pelas variaveis de filtro;
-    public Catalogo descobrirFilme (String language,
-                                    String sort_by,
-                                    String include_adult,
-                                    String primary_release_year,
-                                    String with_genres){
+    public Catalogo descobrirFilme(String language,
+                                   String sort_by,
+                                   String include_adult,
+                                   String primary_release_year,
+                                   String with_genres) {
 
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .scheme("https")
@@ -69,19 +69,12 @@ public class CatalogoService {
 
 
     // Este método acessa a página da API que exibe os filmes em cartaz
-    public Catalogo emCartaz(){
+    public Catalogo emCartaz() {
 
-        UriComponents uri = UriComponentsBuilder.newInstance()
-                .scheme("https")
-                .host("api.themoviedb.org")
-                .path("3/discover/movie/now_playing")
-                .queryParam("api_key", "988decebbe8940b276f0df16a49d8905")
-                .queryParam("language", "pt-br")
-                .queryParam("page", "1")
-                .queryParam("region", "BR")
-                .build();
+        String uriCartaz = "https://api.themoviedb.org/3/movie/now_playing?" +
+                "api_key=988decebbe8940b276f0df16a49d8905&language=pt-BR&page=1&region=BR";
 
-        return template.getForObject(uri.toUriString(), Catalogo.class);
+        return template.getForObject(uriCartaz, Catalogo.class);
 
     }
 }
