@@ -1,4 +1,4 @@
-package br.com.zup.projetoModulo05.catalogo.configs;
+package br.com.zup.projetoModulo05.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
