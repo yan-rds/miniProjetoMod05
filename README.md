@@ -79,7 +79,7 @@ Agora quando o usuário faz uma nova requisição Get para visualizar os assento
 É possível também fazer o cadastro de uma sala completa com todos seus atributos, sendo eles um ID de identificação, uma lista de assentos, nome do filme e os horários das sessões utilizando o verbo HTTP Post. 
 
 A Uri da requisição é:
-localhost:8080/cinema/salas
+localhost:8080/cinema/sala
 
 O json para cadastro da sala é:
 {
