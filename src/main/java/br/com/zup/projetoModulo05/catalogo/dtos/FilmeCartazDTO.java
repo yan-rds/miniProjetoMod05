@@ -1,17 +1,19 @@
-package br.com.zup.projetoModulo05.catalogo.configs.dtos;
+package br.com.zup.projetoModulo05.catalogo.dtos;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.List;
 
 public class FilmeCartazDTO {
     private int id;
-    private String reserva = "localhost:8080/cinema";
+    private String reserva = "localhost:8080/cinema/sala";
     private String title;
     private List<Integer> genre_ids;
     private String overview;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date release_date;
     private boolean adult;
-    private String media_type;
     private double popularity;
 
     public FilmeCartazDTO() {
@@ -71,14 +73,6 @@ public class FilmeCartazDTO {
 
     public void setAdult(boolean adult) {
         this.adult = adult;
-    }
-
-    public String getMedia_type() {
-        return media_type;
-    }
-
-    public void setMedia_type(String media_type) {
-        this.media_type = media_type;
     }
 
     public double getPopularity() {

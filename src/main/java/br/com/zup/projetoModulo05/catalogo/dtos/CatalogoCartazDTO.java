@@ -1,6 +1,4 @@
-package br.com.zup.projetoModulo05.catalogo.configs.dtos;
-
-import br.com.zup.projetoModulo05.catalogo.Filme;
+package br.com.zup.projetoModulo05.catalogo.dtos;
 
 import java.util.List;
 
