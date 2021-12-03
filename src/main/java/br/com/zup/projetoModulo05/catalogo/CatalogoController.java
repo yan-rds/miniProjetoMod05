@@ -2,6 +2,8 @@ package br.com.zup.projetoModulo05.catalogo;
 
 import br.com.zup.projetoModulo05.catalogo.dtos.CatalogoCartazDTO;
 import br.com.zup.projetoModulo05.catalogo.dtos.CatalogoEspelhoDTO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/catalogo")
+@Api(value = "Controle de filtros do catálogo de filmes")
+@CrossOrigin(origins = "*")
 public class CatalogoController {
 
     @Autowired
@@ -19,6 +23,7 @@ public class CatalogoController {
     ModelMapper conversor;
 
     @GetMapping("/{query}/{regiao}/{anoDeLancamento}")
+    @ApiOperation(value = "Encontrar um filme especifico")
     public CatalogoEspelhoDTO getFilmeEspecifico(@PathVariable String query,
                                        @PathVariable String regiao,
                                        @PathVariable String anoDeLancamento){
@@ -28,6 +33,7 @@ public class CatalogoController {
     }
 
     @GetMapping()
+    @ApiOperation(value = "Encontrar filmes a partir de uma serie de filtros")
     public CatalogoEspelhoDTO getDescobrirFilme(@RequestParam Optional<String> idioma,
                                       @RequestParam Optional<String> ordenar_por,
                                       @RequestParam Optional<String> incluir_adulto,
@@ -75,6 +81,7 @@ public class CatalogoController {
     }
 
     @GetMapping("/cartaz")
+    @ApiOperation(value = "Exibir filmes em cartaz")
     public CatalogoCartazDTO emCartaz(){
         Catalogo catalogo = service.emCartaz();
         return conversor.map(catalogo, CatalogoCartazDTO.class);
